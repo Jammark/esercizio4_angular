@@ -1,0 +1,33 @@
+<div class="conteiner-fluid">
+  <div class="d-flex justify-content-center w-100 my-3">
+<div class="spinner-border text-primary text-center" role="status" *ngIf="lista.length == 0">
+  <span class="visually-hidden">Loading...</span>
+</div>
+</div>
+<div class="container">
+  <div class="row gy-4 gx-3">
+    <div class="col-12 sticky-top bg-light">
+      <h1>Ti piacciono {{count}} foto</h1>
+    </div>
+    <div class="col-12 col-md-4 col-lg-3" *ngFor="let photo of lista; let i = index" >
+      <div class="card h-100">
+        <img [src]="photo.url" class="card-img-top" alt="photo">
+        <div class="card-body">
+          <h1 class="text-primary fw-bold fs-1">{{photo.title}}</h1>
+        </div>
+        <div class="card-footer d-flex justify-content-around">
+          <button class="btn btn-primary" (click)="like(photo)">
+            <ng-container *ngIf="isLike(photo)">
+              <span>Non mi piace più</span>
+            </ng-container>
+            <ng-container *ngIf="!isLike(photo)">
+              <span>Mi piace</span>
+            </ng-container>
+          </button>
+          <button class="btn btn-danger" (click)="removePhoto(photo, i)">Rimuovi</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
